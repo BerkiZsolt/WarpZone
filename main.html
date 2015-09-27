@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+</head>
+<body>
+<h1>Canvas Test</h1>
+<canvas id="space" width="500" height="500"
+        style="border:1px solid #000000;">
+</canvas>
+<p><button onclick="mySpace()">Try it</button></p>
+</body>
+<script type="text/javascript" src="ThirdParty/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="Engine/Phsysics/Position.js"></script>
+<script type="text/javascript" src="Engine/Phsysics/Vector.js"></script>
+<script type="text/javascript" src="Engine/Renderer/Image.js"></script>
+<script type="text/javascript" src="Engine/Renderer/Drawnable.js"></script>
+<script type="text/javascript" src="Engine/Renderer/Renderer.js"></script>
+<script type="text/javascript" src="Engine/World/StillEntity.js"></script>
+<script>
+
+    var space = document.getElementById("space");
+
+    var vector1 = new Vector(1, 315);
+
+    entity1 = new StillEntity(100,100, new Image("Images/ship.png"));
+    entity2 = new StillEntity(50,50, new Image("Images/ship.png"));
+    entity3 = new StillEntity(0,0, new Image("Images/ship.png"));
+
+    console.log("Should be true: " + entity1.equals(entity1));
+    console.log("Should be false: " + entity1.equals(entity2));
+
+    renderer = new Renderer(space);
+    renderer.add(entity1);
+    renderer.add(entity2);
+    renderer.add(entity3);
+    renderer.remove(entity2);
+    renderer.print();
+
+    function mySpace() {
+        renderer.render();
+        entity3.getPosition().add(vector1);
+    }
+</script>
